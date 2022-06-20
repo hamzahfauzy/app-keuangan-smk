@@ -3,14 +3,13 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <div class="user">
-                <div class="avatar-sm float-left mr-2">
-                    <img src="assets/img/user-placeholder.png" alt="..." class="avatar-img rounded-circle">
+                <div class="text-center">
+                    <img src="http://backend.stikes-assyifa.ac.id/images/logo.png" width="150px" height="100px" alt="logo" style="object-fit:contain;">
                 </div>
-                <div class="info">
+                <div class="info text-center mt-2">
                     <a href="">
                         <span>
-                            <?=auth()->user->name?>
-                            <span class="user-level" style="text-transform:capitalize;"><?=get_role(auth()->user->id)->name?></span>
+                            <?=app('name')?>
                         </span>
                     </a>
                     <div class="clearfix"></div>
