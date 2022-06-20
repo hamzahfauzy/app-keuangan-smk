@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/stik8232/public_html/yayasan
+    - /bin/cp -a * $DEPLOYPATH
