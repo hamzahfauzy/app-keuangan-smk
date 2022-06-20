@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/stik8232/public_html/yayasan
+    - export DEPLOYPATH=/home/htdoffi1/smk
     - /bin/cp -a * $DEPLOYPATH
