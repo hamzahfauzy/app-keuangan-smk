@@ -27,9 +27,11 @@ if(request() == 'POST')
             'account_id' => 1, // uang kuliah
             'name' => $data[3], 
             'amount' => $data[4],
-            'user_id' => $user->id,
-            'user_name' => $user->username,
+            'user_id' => $user->user->id,
+            'user_name' => $user->user->username,
         ]);
+
+        Whatsapp::send($checker->whatsapp,'Telah terbit tagihan '.$data->name.' sebesar Rp. ' . number_format($data[4]));
     }
     fclose($handle);
 

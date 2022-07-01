@@ -42,6 +42,7 @@ CREATE TABLE transactions (
     user_name VARCHAR(100) NULL,
     description TEXT NULL,
     amount VARCHAR(100) NOT NULL,
+    whatsapp VARCHAR(100) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_transactions_account_id FOREIGN KEY (account_id) REFERENCES accounts(id) ON DELETE CASCADE
 );

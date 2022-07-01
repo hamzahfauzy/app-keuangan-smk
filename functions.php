@@ -9,6 +9,7 @@ require '../libs/JwtAuth.php';
 require '../libs/ArrayHelper.php';
 require '../libs/Session.php';
 require '../libs/Database.php';
+require '../libs/Whatsapp.php';
 
 $config = require '../config/main.php';
 

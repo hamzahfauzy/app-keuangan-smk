@@ -31,6 +31,7 @@
                                             <th>Kode</th>
                                             <th>Nama</th>
                                             <th>Tipe</th>
+                                            <th>Whatsapp</th>
                                             <th class="text-right">
                                             </th>
                                         </tr>
@@ -44,6 +45,7 @@
                                             <td><?=$data->special_id?></td>
                                             <td><?=$data->name?></td>
                                             <td><?=$data->subject_type?></td>
+                                            <td><?=$data->whatsapp?></td>
                                             <td>
                                                 <a href="index.php?r=subjects/view&id=<?=$data->id?>" class="btn btn-sm btn-success"><i class="fas fa-eye"></i> Lihat</a>
                                                 <a href="index.php?r=subjects/edit&id=<?=$data->id?>" class="btn btn-sm btn-warning"><i class="fas fa-pencil-alt"></i> Edit</a>

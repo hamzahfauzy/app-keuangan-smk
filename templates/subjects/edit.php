@@ -44,6 +44,10 @@
                                     <textarea name="subjects[description]" class="form-control" required><?=$data->description?></textarea>
                                 </div>
                                 <div class="form-group">
+                                    <label for="">Whatsapp</label>
+                                    <input type="number" name="subjects[whatsapp]" class="form-control" required value="<?=$data->whatsapp?>">
+                                </div>
+                                <div class="form-group">
                                     <button class="btn btn-primary">Submit</button>
                                 </div>
                             </form>
