@@ -5,6 +5,8 @@ class Whatsapp
     
     static function send($to, $message)
     {
+        return ;
+        
         $data = [
             'api_key' => '1184c69ae73d5ec73f28f561fd38a87b',
             'sender'  => '6282369378823',
