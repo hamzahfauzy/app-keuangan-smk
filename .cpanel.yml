@@ -2,4 +2,6 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/htdoffi1/smk.htd-official.com
+    - export DEPLOYPATH2=/home/htdoffi1/stikes.htd-official.com
     - /bin/cp -a * $DEPLOYPATH
+    - /bin/cp -a * $DEPLOYPATH2
