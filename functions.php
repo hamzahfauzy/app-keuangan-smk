@@ -540,8 +540,8 @@ function render_tree_on_row_detail($tree, $sources, $year, $detail = false)
         $item_link = "";
         $total_budget = totalBudget($root->id,$year);
         $sisa_budget  = sisaBudget($root->id,$year);
-        $presenstase  = ceil( ($sisa_budget / $total_budget) * 100);
-        if(!$root->hasChildren() && !$detail)
+        $presenstase  = $sisa_budget == 0 || $total_budget == 0 ? 0 : ceil( ($sisa_budget / $total_budget) * 100);
+        if(!$root->hasChildren() && !$detail && getBudgetId($root->id, $year))
         {
             $item_link = "<br><a href='index.php?r=budget-items/index&budget_id=".getBudgetId($root->id, $year)."'>Rincian</a>";
         }
@@ -578,8 +578,8 @@ function render_descendants_detail($node, $sources, $year, $gen, $detail = false
         $item_link    = "";
         $total_budget = totalBudget($descendant->id,$year);
         $sisa_budget  = sisaBudget($descendant->id,$year);
-        $presenstase  = ceil(($sisa_budget / $total_budget) * 100);
-        if(!$descendant->hasChildren() && !$detail)
+        $presenstase  = $sisa_budget == 0 || $total_budget == 0 ? 0 : ceil( ($sisa_budget / $total_budget) * 100);
+        if(!$descendant->hasChildren() && !$detail && getBudgetId($descendant->id, $year))
         {
             $item_link = "<br>$space<a href='index.php?r=budget-items/index&budget_id=".getBudgetId($descendant->id, $year)."'>Rincian</a>";
         }
@@ -690,8 +690,9 @@ function getBudgetId($activity,$year)
         'year_id'     => $year
     ]);
 
-    return $budget->id;
-
+    if($budget)
+        return $budget->id;
+    return 0;
 }
 
 function totalBudget($activity, $year)

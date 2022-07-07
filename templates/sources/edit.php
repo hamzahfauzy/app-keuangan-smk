@@ -21,11 +21,11 @@
                             <form action="" method="post">
                                 <div class="form-group">
                                     <label for="">Nama</label>
-                                    <input type="text" name="routes[name]" class="form-control" value="<?=$data->name?>" required>
+                                    <input type="text" name="sources[name]" class="form-control" value="<?=$data->name?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Prioritas</label>
-                                    <input type="number" name="routes[priority]" class="form-control" value="<?=$data->priority?>" required>
+                                    <input type="number" name="sources[priority]" class="form-control" value="<?=$data->priority?>" required>
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary">Submit</button>

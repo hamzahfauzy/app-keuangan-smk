@@ -1,7 +1,7 @@
 <?php
 
-if(request() == 'POST' && $_POST['password'] == 'indonesiaraya2019')
-{
+// if(request() == 'POST' && $_POST['password'] == 'indonesiaraya2019')
+// {
     $conn  = conn();
     $db    = new Database($conn);
     
@@ -14,4 +14,4 @@ if(request() == 'POST' && $_POST['password'] == 'indonesiaraya2019')
     
     echo "DB Init Success";
     die();
-}
+// }

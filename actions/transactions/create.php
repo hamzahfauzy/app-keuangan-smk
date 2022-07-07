@@ -5,7 +5,6 @@ $db   = new Database($conn);
 
 if(request() == 'POST')
 {
-
     $subject = '';
     $bill    = '';
 
@@ -49,12 +48,16 @@ if(request() == 'POST')
     unset($_POST['transactions']['subject']);
     unset($_POST['transactions']['bill']);
 
-    $_POST['transactions']['invoice_code'] = 'INV-'.strtoupper(strtotime('now').rand(0,100));
-
-    $db->insert('transactions',$_POST['transactions']);
+    $transcation = $db->insert('transactions',$_POST['transactions']);
 
     set_flash_msg(['success'=>'Transaksi berhasil ditambahkan']);
-    header('location:index.php?r=transactions/index');
+    header('location:index.php?r=transactions/index&invoice_code='.$transcation->invoice_code);
+}
+
+if(!isset($_GET['invoice_code']) || empty($_GET['invoice_code']))
+{
+    $invoice_code = 'INV-'.strtoupper(strtotime('now').rand(0,100));
+    header('location:index.php?r=transactions/create&invoice_code='.$invoice_code);
 }
 
 $accounts = $db->all('accounts');

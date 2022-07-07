@@ -8,7 +8,7 @@
                         <h5 class="text-white op-7 mb-2">Memanajemen data kegiatan</h5>
                     </div>
                     <div class="ml-md-auto py-2 py-md-0">
-                        <a href="index.php?r=activities/create" class="btn btn-success btn-round">Buat Sumber Dana</a>
+                        <a href="index.php?r=activities/create" class="btn btn-success btn-round">Buat Kegiatan</a>
                     </div>
                 </div>
             </div>

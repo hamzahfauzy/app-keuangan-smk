@@ -21,6 +21,7 @@
                     <div class="card">
                         <div class="card-body">
                             <form action="" method="post">
+                                <input type="hidden" name="transactions[invoice_code]" value="<?=$_GET['invoice_code']?>">
                                 <div class="form-group">
                                     <label for="">Subjek</label>
                                     <input type="text" name="transactions[subject]" id="subject" class="form-control" readonly data-toggle="modal" data-target="#exampleModal">
