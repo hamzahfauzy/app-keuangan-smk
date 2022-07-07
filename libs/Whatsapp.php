@@ -5,6 +5,10 @@ class Whatsapp
     
     static function send($to, $message)
     {
+        if(empty(config('wa_api_key')) || !empty(config('wa_sender')))
+        {
+            return ;
+        }
         $data = [
             'api_key' => config('wa_api_key'),
             'sender'  => config('wa_sender'),

@@ -30,6 +30,7 @@ if(request() == 'POST')
             'user_id' => $user->user->id,
             'user_name' => $user->user->username,
             'invoice_code' => $invoice_code,
+            'created_at' => $data[5],
         ]);
     }
     fclose($handle);
