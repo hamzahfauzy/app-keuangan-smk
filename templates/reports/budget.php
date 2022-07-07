@@ -28,7 +28,12 @@
                             <div class="form-group">
                                 <label for="">Filter</label>
                                 <div class="d-flex">
-                                    <input type="number" placeholder="Tahun" name="year" onchange="updateDate(this.value)" class="form-control" value="<?=@$_GET['year']?>">
+                                    <select name="year" class="form-control" required>
+                                        <option value="">- Pilih Tahun Anggaran -</option>
+                                        <?php foreach($years as $year): ?>
+                                        <option value="<?=$year->name?>" <?=isset($_GET['year']) && $_GET['year']==$year->name?'selected':''?>><?=$year->name?></option>
+                                        <?php endforeach ?>
+                                    </select>
                                     &nbsp;
                                     <input type="date" id="from" name="from" class="form-control" value="<?=@$_GET['from']?>">
                                     &nbsp;
@@ -57,6 +62,7 @@
                                             <th class="text-center text-nowrap" rowspan="2">Total Anggaran</th>
                                             <th class="text-center text-nowrap" rowspan="2">Terpakai</th>
                                             <th class="text-center text-nowrap" rowspan="2">Sisa</th>
+                                            <th class="text-center text-nowrap" rowspan="2">Presentase</th>
                                         </tr>
                                         <tr>
                                             <?php foreach($sources as $source): ?>

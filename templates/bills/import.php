@@ -25,6 +25,14 @@
                                     <input type="file" name="file" class="form-control" required>
                                 </div>
                                 <div class="form-group">
+                                    <select name="account_id" class="form-control" required>
+                                        <option value="">- Pilih Akun -</option>
+                                        <?php foreach($accounts as $account): ?>
+                                        <option value="<?=$account->id?>" <?=isset($_GET['account_id']) && $_GET['account_id']==$account->id?'selected':''?>><?=$account->name?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <button class="btn btn-primary">Submit</button>
                                 </div>
                             </form>

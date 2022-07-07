@@ -1,5 +1,6 @@
 <?php load_templates('layouts/top') ?>
 <?php load_templates('transactions/modal') ?>
+<?php load_templates('transactions/modaltagihan') ?>
     <div class="content">
         <div class="panel-header bg-success-gradient">
             <div class="page-inner py-5">
@@ -21,6 +22,14 @@
                         <div class="card-body">
                             <form action="" method="post">
                                 <div class="form-group">
+                                    <label for="">Subjek</label>
+                                    <input type="text" name="transactions[subject]" id="subject" class="form-control" readonly data-toggle="modal" data-target="#exampleModal">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Tagihan</label>
+                                    <input type="text" name="transactions[bill]" class="form-control" readonly data-toggle="modal" data-target="#modaltagihan">
+                                </div>
+                                <div class="form-group">
                                     <label for="">Akun</label>
                                     <select name="transactions[account_id]" id="" class="form-control" required>
                                         <option value="">- Pilih -</option>
@@ -30,16 +39,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Subjek</label>
-                                    <input type="text" name="transactions[subject]" class="form-control" readonly data-toggle="modal" data-target="#exampleModal">
-                                </div>
-                                <!-- <div class="form-group">
-                                    <label for="">Tagihan</label>
-                                    <input type="text" name="transactions[bill]" class="form-control" readonly>
-                                </div> -->
-                                <div class="form-group">
                                     <label for="">Jumlah</label>
-                                    <input type="number" name="transactions[amount]" class="form-control" required>
+                                    <input type="number" name="transactions[amount]" id="amount" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Deskripsi</label>
@@ -47,7 +48,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Tanggal</label>
-                                    <input type="date" name="transactions[created_at]" class="form-control" required>
+                                    <input type="date" name="transactions[created_at]" class="form-control" value="<?=date('Y-m-d')?>" required>
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary">Submit</button>

@@ -8,6 +8,7 @@
                         <h5 class="text-white op-7 mb-2">Memanajemen data transaksi</h5>
                     </div>
                     <div class="ml-md-auto py-2 py-md-0">
+                        <a href="index.php?r=transactions/import" class="btn btn-primary btn-round">Import Transaksi</a>
                         <a href="index.php?r=transactions/create" class="btn btn-success btn-round">Buat Transaksi</a>
                     </div>
                 </div>
@@ -22,10 +23,11 @@
                             <div class="alert alert-success"><?=$success_msg?></div>
                             <?php endif ?>
                             <div class="table-responsive table-hover table-sales">
-                                <table class="table">
+                                <table class="table datatable">
                                     <thead>
                                         <tr>
                                             <th width="20px">#</th>
+                                            <th>Invoice</th>
                                             <th>Transaksi</th>
                                             <th>Deskripsi</th>
                                             <th>Jumlah</th>
@@ -40,6 +42,7 @@
                                             <td>
                                                 <?=$index+1?>
                                             </td>
+                                            <td><?=$data->invoice_code?></td>
                                             <td>
                                                 <?=$data->account_name?>
                                                 <?php if($data->subject_name): ?>

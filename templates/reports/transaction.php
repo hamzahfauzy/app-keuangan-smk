@@ -19,7 +19,7 @@
                     <div class="card">
                         <div class="card-body">
                             <form action="">
-                            <input type="hidden" name="r" value="reports/index">
+                            <input type="hidden" name="r" value="reports/transaction">
                             <div class="form-group">
                                 <label for="">Filter</label>
                                 <div class="d-flex">

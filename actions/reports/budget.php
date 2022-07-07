@@ -1,5 +1,8 @@
 <?php
 
+$conn = conn();
+$db   = new Database($conn);
+
 $tree = [];
 $sources = [];
 $year = "";
@@ -9,8 +12,6 @@ if(
     isset($_GET['to']) && !empty($_GET['to'])
 )
 {
-    $conn = conn();
-    $db   = new Database($conn);
     
     $year = $_GET['year'];
     $year = $db->single('years',['name'=>$year]);
@@ -30,4 +31,6 @@ if(
     
 }
 
-return compact('tree','sources','year');
+$years = $db->all('years');
+
+return compact('tree','sources','year','years');

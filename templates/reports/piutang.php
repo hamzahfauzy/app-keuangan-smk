@@ -19,10 +19,17 @@
                     <div class="card">
                         <div class="card-body">
                             <form action="">
-                            <input type="hidden" name="r" value="reports/index">
+                            <input type="hidden" name="r" value="reports/piutang">
                             <div class="form-group">
                                 <label for="">Filter</label>
                                 <div class="d-flex">
+                                    <select name="group" class="form-control" required>
+                                        <option value="">- Pilih Group -</option>
+                                        <?php foreach($groups as $group): ?>
+                                        <option value="<?=$group->subject_group?>" <?=isset($_GET['group']) && $_GET['group']==$group->subject_group?'selected':''?>><?=$group->subject_group?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                    &nbsp;
                                     <input type="date" name="from" class="form-control" value="<?=@$_GET['from']?>">
                                     &nbsp;
                                     <input type="date" name="to" class="form-control" value="<?=@$_GET['to']?>">
@@ -45,6 +52,7 @@
                                         <tr>
                                             <th width="20px">#</th>
                                             <th>Subjek</th>
+                                            <th>Group</th>
                                             <th>Tagihan</th>
                                             <th>Jumlah</th>
                                         </tr>
@@ -59,6 +67,7 @@
                                                 <?=$data->subject_name?><br>
                                                 <small><i>NIM : <?=$data->special_id?></i></small>
                                             </td>
+                                            <td><?=$data->subject_group?></td>
                                             <td>
                                                 <?=$data->name?><br>
                                                 <small><i>Akun : <?=$data->account_name?></i></small>

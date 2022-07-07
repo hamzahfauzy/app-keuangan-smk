@@ -8,7 +8,8 @@
                         <h5 class="text-white op-7 mb-2">Memanajemen data rincian kegiatan</h5>
                     </div>
                     <div class="ml-md-auto py-2 py-md-0">
-                        <a href="index.php?r=budget-items/create&budget_id=<?=$activity->id?>" class="btn btn-success btn-round">Tambah Rincian</a>
+                        <a href="index.php?r=budgets/index&id=<?=$budget->year_id?>" class="btn btn-warning btn-round">Kembali</a>
+                        <a href="index.php?r=budget-items/create&budget_id=<?=$budget->id?>" class="btn btn-success btn-round">Tambah Rincian</a>
                     </div>
                 </div>
             </div>

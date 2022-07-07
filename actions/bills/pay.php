@@ -27,7 +27,13 @@ if(request() == 'POST')
         'amount'     => $_POST['amount'],
     ]);
 
-    Whatsapp::send($data->whatsapp,'Pembayaran tagihan '.$data->name.' telah diterima');
+    $message = 
+'Hai '.$data->subject_name.',
+Pembayaran tagihan '.$data->name.' sebesar Rp. '.(number_format($_POST['amount'])).' telah diterima.
+
+Terima Kasih.';
+
+    Whatsapp::send($data->whatsapp,$message);
 
     set_flash_msg(['success'=>'Tagihan berhasil dibayar']);
     header('location:index.php?r=bills/index');

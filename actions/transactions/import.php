@@ -21,30 +21,23 @@ if(request() == 'POST')
 
         // skip if subject not exists
         if(!$checker || empty($checker)) continue;
-
-        $db->insert('bills',[
+        $invoice_code = 'INV-'.strtoupper(strtotime('now').rand(0,100));
+        $db->insert('transactions',[
             'subject_id' => $checker->id,
             'account_id' => $_POST['account_id'],
-            'name' => $data[3], 
+            'description' => $data[3], 
             'amount' => $data[4],
             'user_id' => $user->user->id,
             'user_name' => $user->user->username,
+            'invoice_code' => $invoice_code,
         ]);
-        $message = 
-'Hai '.$checker->name.',
-Telah terbit tagihan '.$data[3].' sebesar Rp. ' . number_format($data[4]) .'
-Harap segera dibayar ke resepsionis.
-
-Terima kasih.
-';
-        Whatsapp::send($checker->whatsapp,$message);
     }
     fclose($handle);
 
-    set_flash_msg(['success'=>'Import Tagihan berhasil']);
-    header('location:index.php?r=bills/index');
+    set_flash_msg(['success'=>'Import Transaksi berhasil']);
+    header('location:index.php?r=transactions/index');
 }
 
-$accounts = $db->all('accounts',['transaction_type'=>'Db']);
+$accounts = $db->all('accounts',['transaction_type'=>'Cr']);
 
 return compact('accounts');

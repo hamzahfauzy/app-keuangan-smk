@@ -12,7 +12,7 @@ return [
     'tagihan'   => 'bills/index',
     'transaksi' => 'transactions/index',
     'laporan'   => [
-        'laporan transaksi'=>'reports/index',
+        'laporan transaksi'=>'reports/transaction',
         'laporan anggaran'=>'reports/budget',
         'laporan piutang'=>'reports/piutang'
     ],

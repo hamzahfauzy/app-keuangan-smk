@@ -1,15 +1,15 @@
 <?php load_templates('layouts/top') ?>
-<?php load_templates('transactions/modal') ?>
     <div class="content">
         <div class="panel-header bg-success-gradient">
             <div class="page-inner py-5">
                 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                     <div>
-                        <h2 class="text-white pb-2 fw-bold">Edit Transaksi : <?=$data->description?></h2>
+                        <h2 class="text-white pb-2 fw-bold">Import Transaksi</h2>
                         <h5 class="text-white op-7 mb-2">Memanajemen data transaksi</h5>
                     </div>
                     <div class="ml-md-auto py-2 py-md-0">
-                        <a href="index.php?r=transactions/index" class="btn btn-warning btn-round">Kembali</a>
+                        <a href="format/format-import-transaksi.csv" class="btn btn-success btn-round">Download Format Import</a>
+                        <a href="index.php?r=bills/index" class="btn btn-warning btn-round">Kembali</a>
                     </div>
                 </div>
             </div>
@@ -19,12 +19,19 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="" method="post">
+                            <form action="" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="">Invoice</label>
-                                    <input type="text" class="form-control" name="transactions[invoice_code]" value="<?=$data->invoice_code?>">
+                                    <label for="">File Import</label>
+                                    <input type="file" name="file" class="form-control" required>
                                 </div>
-                                
+                                <div class="form-group">
+                                    <select name="account_id" class="form-control" required>
+                                        <option value="">- Pilih Akun -</option>
+                                        <?php foreach($accounts as $account): ?>
+                                        <option value="<?=$account->id?>" <?=isset($_GET['account_id']) && $_GET['account_id']==$account->id?'selected':''?>><?=$account->name?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary">Submit</button>
                                 </div>

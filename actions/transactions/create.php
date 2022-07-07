@@ -49,6 +49,8 @@ if(request() == 'POST')
     unset($_POST['transactions']['subject']);
     unset($_POST['transactions']['bill']);
 
+    $_POST['transactions']['invoice_code'] = 'INV-'.strtoupper(strtotime('now').rand(0,100));
+
     $db->insert('transactions',$_POST['transactions']);
 
     set_flash_msg(['success'=>'Transaksi berhasil ditambahkan']);

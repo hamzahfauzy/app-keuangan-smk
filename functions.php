@@ -538,20 +538,24 @@ function render_tree_on_row_detail($tree, $sources, $year, $detail = false)
     foreach($tree->getRootNodes() as $root):
 
         $item_link = "";
+        $total_budget = totalBudget($root->id,$year);
+        $sisa_budget  = sisaBudget($root->id,$year);
+        $presenstase  = ceil( ($sisa_budget / $total_budget) * 100);
         if(!$root->hasChildren() && !$detail)
         {
-            $item_link = "<br><a href='index.php?r=budget-items/index&budget_id=$root->id'>Rincian</a>";
+            $item_link = "<br><a href='index.php?r=budget-items/index&budget_id=".getBudgetId($root->id, $year)."'>Rincian</a>";
         }
         $rows .= "<tr><td>$root->code</td><td><b class='text-nowrap'>$root->name</b><br><i>$root->description</i>$item_link</td>";
         foreach($sources as $source):
             $rows .= '<td class="text-nowrap">Rp. '.number_format(getBudget($root->id,$source->id,$year)).'</td>';
         endforeach;
-        $rows .= '<td class="text-nowrap">Rp. '.number_format(totalBudget($root->id,$year)).'</td>';
-        $rows .= '<td class="text-nowrap">Rp. '.number_format(sisaBudget($root->id,$year)).'</td>';
+        $rows .= '<td class="text-nowrap">Rp. '.number_format($total_budget).'</td>';
+        $rows .= '<td class="text-nowrap">Rp. '.number_format($sisa_budget).'</td>';
         if($detail)
         {
-            $rows .= '<td class="text-nowrap">Rp. '.number_format(totalBudget($root->id,$year)-sisaBudget($root->id,$year)).'</td>';
+            $rows .= '<td class="text-nowrap">Rp. '.number_format($total_budget-$sisa_budget).'</td>';
         }
+        $rows .= '<td class="text-nowrap">'.$presenstase.'%</td>';
         $rows .= "</tr>";
         if($root->hasChildren())
         {
@@ -570,23 +574,27 @@ function render_descendants_detail($node, $sources, $year, $gen, $detail = false
 {
     $rows = "";
     foreach($node->getChildren() as $descendant):
-        $space = str_repeat('&nbsp;', $gen*8);
-        $item_link = "";
+        $space        = str_repeat('&nbsp;', $gen*8);
+        $item_link    = "";
+        $total_budget = totalBudget($descendant->id,$year);
+        $sisa_budget  = sisaBudget($descendant->id,$year);
+        $presenstase  = ceil(($sisa_budget / $total_budget) * 100);
         if(!$descendant->hasChildren() && !$detail)
         {
-            $item_link = "<br>$space<a href='index.php?r=budget-items/index&budget_id=$descendant->id'>Rincian</a>";
+            $item_link = "<br>$space<a href='index.php?r=budget-items/index&budget_id=".getBudgetId($descendant->id, $year)."'>Rincian</a>";
         }
         $rows .= "<tr><td>$descendant->code</td><td class='text-nowrap'>".$space.' - '.$descendant->name."<br>".$space."<span class='text-xs'><i>".$descendant->description."</i></span>$item_link</td>";
         foreach($sources as $source):
             $rows .= '<td class="text-nowrap">Rp. '.number_format(getBudget($descendant->id,$source->id,$year)).'</td>';
         endforeach;
-        $rows .= '<td class="text-nowrap">Rp. '.number_format(totalBudget($descendant->id,$year)).'</td>';
-        $rows .= '<td class="text-nowrap">Rp. '.number_format(sisaBudget($descendant->id,$year)).'</td>';
+        $rows .= '<td class="text-nowrap">Rp. '.number_format($total_budget).'</td>';
+        $rows .= '<td class="text-nowrap">Rp. '.number_format($sisa_budget).'</td>';
         if($detail) 
         {
-            $rows .= '<td class="text-nowrap">Rp. '.number_format(totalBudget($descendant->id,$year)-sisaBudget($descendant->id,$year)).'</td>';
+            $rows .= '<td class="text-nowrap">Rp. '.number_format($total_budget-$sisa_budget).'</td>';
         }
-    $rows .= "</tr>";
+        $rows .= '<td class="text-nowrap">'.$presenstase.'%</td>';
+        $rows .= "</tr>";
     if($descendant->hasChildren())
     {
         $rows .= render_descendants_detail($descendant, $sources, $year, $gen+1, $detail);
@@ -641,6 +649,7 @@ function render_item($node, $sources, $year, $gen)
         $rows .= '<td class="text-nowrap">Rp. <i>'.number_format($item->amount).'</i></td>';
         $rows .= '<td></td>';
         $rows .= '<td></td>';
+        $rows .= '<td></td>';
         $rows .= '</tr>';
     }
 
@@ -657,12 +666,32 @@ function getBudget($activity,$source_id,$year)
         'year_id'     => $year
     ]);
 
-    $source = $db->single('budget_sources',[
-        'budget_id' => $budget->id,
-        'source_id' => $source_id
+    if($budget)
+    {
+        $source = $db->single('budget_sources',[
+            'budget_id' => $budget->id,
+            'source_id' => $source_id
+        ]);
+    
+        return $source ? $source->amount : 0;
+    }
+
+    return 0;
+
+}
+
+function getBudgetId($activity,$year)
+{
+    $conn  = conn();
+    $db    = new Database($conn);
+
+    $budget = $db->single('budgets',[
+        'activity_id' => $activity,
+        'year_id'     => $year
     ]);
 
-    return $source ? $source->amount : 0;
+    return $budget->id;
+
 }
 
 function totalBudget($activity, $year)
@@ -675,10 +704,16 @@ function totalBudget($activity, $year)
         'year_id'     => $year
     ]);
 
-    $db->query = "SELECT SUM(amount) as total FROM budget_sources WHERE budget_id = $budget->id";
-    $source = $db->exec('single');
+    if($budget)
+    {
+        $db->query = "SELECT SUM(amount) as total FROM budget_sources WHERE budget_id = $budget->id";
+        $source = $db->exec('single');
+    
+        return $source->total;
+    }
 
-    return $source->total;
+    return 0;
+
 }
 
 function sisaBudget($activity, $year)
@@ -720,11 +755,14 @@ function countBudget($node, $year)
                 'activity_id' => $descendant->id,
                 'year_id'     => $year
             ]);
-        
+
+            if($budget)
+            {
+                // $db->query = "SELECT SUM(amount) as total FROM budget_sources WHERE budget_id = $budget->id";
+                // $source = $db->exec('single');
+                $counter += countBudget($descendant, $year);
+            }
             
-            $db->query = "SELECT SUM(amount) as total FROM budget_sources WHERE budget_id = $budget->id";
-            $source = $db->exec('single');
-            $counter += countBudget($descendant, $year);
         }
     }
     else
@@ -744,8 +782,11 @@ function countBudget($node, $year)
         }
         else
         {
-            $db->query = "SELECT SUM(amount) as total FROM budget_items WHERE budget_id = $budget->id";
-            $items = $db->exec('single');
+            if($budget)
+            {
+                $db->query = "SELECT SUM(amount) as total FROM budget_items WHERE budget_id = $budget->id";
+                $items = $db->exec('single');
+            }
         }
 
         $counter += $items ? $items->total : 0;

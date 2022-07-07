@@ -39,6 +39,7 @@ td input.form-control
                                             <th class="text-center text-nowrap" colspan="<?=count($sources)?>">Anggaran</th>
                                             <th class="text-center text-nowrap" rowspan="2">Total</th>
                                             <th class="text-center text-nowrap" rowspan="2">Terpakai</th>
+                                            <th class="text-center text-nowrap" rowspan="2">Presentase</th>
                                         </tr>
                                         <tr>
                                             <?php foreach($sources as $source): ?>
