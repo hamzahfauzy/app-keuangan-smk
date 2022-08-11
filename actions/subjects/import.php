@@ -1,46 +1,38 @@
 <?php
-
 $conn = conn();
 $db   = new Database($conn);
 
 if(request() == 'POST')
 {
-    $jenis = $_POST['jenis'];
 
-    $keyword = $_POST['keyword'];
-    if($keyword)
+    $handle  = fopen($_FILES['file']['tmp_name'], "r");
+
+    // skip header
+    $headers = fgetcsv($handle, 1000, ",");
+
+    $user = auth();
+
+    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) 
     {
-        if($jenis == 'mahasiswa')
-            $keyword = '?NIM='.$keyword;
-        else if($jenis == 'dosen')
-            $keyword = '?NIDN='.$keyword;
-        else $keyword = '';
-    }
-
-    $request = simple_curl('https://api.stikes-assyifa.ac.id/site/get-'.$jenis.$keyword);
-    $response = json_decode($request['content'])->data;
-
-    foreach($response as $data)
-    {
-        // check if data exists
+        // check nim
         $checker = $db->single('subjects',[
-            'special_id' => $jenis == 'mahasiswa' ? $data->NIM : $data->NIDN
+            'special_id' => $data[1]
         ]);
-        if($checker) continue;
 
+        // skip if subject not exists
+        if(!empty($checker)) continue;
         $db->insert('subjects',[
-            'special_id' => $jenis == 'mahasiswa' ? $data->NIM : $data->NIDN,
-            'name'       => $data->nama,
-            'description'  => $jenis == 'mahasiswa' ? 'Prodi : ' . $data->prodi->nama . '\n' . 'Kelas : ' . $data->kelas->nama : $jenis,
-            'subject_type' => $jenis,
-        ]);  
+            'special_id' => $data[1],
+            'name' => $data[2],
+            'description' => 'Subjek '.$data[2], 
+            'subject_type' => $data[3],
+            'subject_group' => $data[4],
+            'whatsapp' => $data[5]
+        ]);
     }
+    fclose($handle);
 
-    set_flash_msg(['success'=>'Subjek berhasil di import']);
-    // header('location:index.php?r=subjects/index');
-    // die();
+    set_flash_msg(['success'=>'Import Subjek berhasil']);
+    header('location:index.php?r=subjects/index');
+    die();
 }
-
-// set_flash_msg(['success'=>'Subjek berhasil di import']);
-header('location:index.php?r=subjects/index');
-die();

@@ -11,6 +11,11 @@
             <div class="modal-body">
                 <form action="index.php?r=subjects/import" method="post" enctype="multipart/form-data">
                     <div class="form-group">
+                        <label for="">Download Format</label>
+                        <br>
+                        <a href="format/format-import-subject.csv"><i class="fas fa-download"></i> Download</a>
+                    </div>
+                    <div class="form-group">
                         <label for="">File</label>
                         <input type="file" name="file" class="form-control">
                     </div>
