@@ -23,5 +23,13 @@ return [
         'menu' => $menu,
         'icon' => $icon_menu
     ],
-    'return_margin' => 2
+    'return_margin' => 2,
+    'theme' => [
+        'logo' => 'assets/img/main-logo.png',
+        'header_color'     => 'green',
+        'top_navbar_color' => 'green2',
+        'sidebar_color'    => 'nav-success',
+        'panel_color'      => 'bg-success-gradient',
+        'button_main_color'=> 'btn-success',
+    ]
 ];

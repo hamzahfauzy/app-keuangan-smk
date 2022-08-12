@@ -1,6 +1,6 @@
 <?php load_templates('layouts/top') ?>
     <div class="content">
-        <div class="panel-header bg-success-gradient">
+        <div class="<?=config('theme')['panel_color']?>">
             <div class="page-inner py-5">
                 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                     <div>
@@ -8,7 +8,7 @@
                         <h5 class="text-white op-7 mb-2">Memanajemen data pengguna</h5>
                     </div>
                     <div class="ml-md-auto py-2 py-md-0">
-                        <a href="index.php?r=users/create" class="btn btn-success btn-round">Buat Pengguna</a>
+                        <a href="index.php?r=users/create" class="<?=config('theme')['button_main_color']?> btn-round">Buat Pengguna</a>
                     </div>
                 </div>
             </div>

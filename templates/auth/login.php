@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>Masuk</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="http://backend.stikes-assyifa.ac.id/images/logo.png" type="image/x-icon"/>
+	<link rel="icon" href="<?=config('theme')['logo']?>" type="image/x-icon"/>
 
 	<!-- Fonts and icons -->
 	<script src="assets/js/plugin/webfont/webfont.min.js"></script>
@@ -36,7 +36,7 @@
                 <div class="card full-height">
                     <div class="card-body">
                         <center>
-                            <img src="http://backend.stikes-assyifa.ac.id/images/logo.png" width="150px" height="100px" alt="logo" style="object-fit:contain;">
+                            <img src="<?=config('theme')['logo']?>" width="150px" height="100px" alt="logo" style="object-fit:contain;">
                         </center>
                         <div class="card-title text-center">Login Form</div>
                         <div class="card-category text-center">Masukkan Username dan Password anda pada bidang di bawah ini.</div>
@@ -47,7 +47,7 @@
                                 <input type="text" name="username" id="" class="form-control mb-2" placeholder="Nama Pengguna Disini...">
                                 <label for="">Kata Sandi</label>
                                 <input type="password" name="password" id="" class="form-control mb-2" placeholder="Kata Sandi Disini...">
-                                <button class="btn btn-success btn-block btn-round">Masuk</button>
+                                <button class="<?=config('theme')['button_main_color']?> btn-block btn-round">Masuk</button>
                             </div>
                         </form>
                     </div>

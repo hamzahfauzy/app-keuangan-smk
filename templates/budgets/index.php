@@ -9,7 +9,7 @@ td input.form-control
 }
 </style>
     <div class="content">
-        <div class="panel-header bg-success-gradient">
+        <div class="<?=config('theme')['panel_color']?>">
             <div class="page-inner py-5">
                 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                     <div>
@@ -17,7 +17,7 @@ td input.form-control
                         <h5 class="text-white op-7 mb-2">Memanajemen data anggaran</h5>
                     </div>
                     <div class="ml-md-auto py-2 py-md-0">
-                    <a href="index.php?r=budgets/form&id=<?=$_GET['id']?>" class="btn btn-success">Edit Anggaran</a>
+                    <a href="index.php?r=budgets/form&id=<?=$_GET['id']?>" class="<?=config('theme')['button_main_color']?>">Edit Anggaran</a>
                     </div>
                 </div>
             </div>

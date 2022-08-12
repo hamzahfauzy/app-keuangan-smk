@@ -1,6 +1,6 @@
 <?php load_templates('layouts/top') ?>
     <div class="content">
-        <div class="panel-header bg-success-gradient">
+        <div class="<?=config('theme')['panel_color']?>">
             <div class="page-inner py-5">
                 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                     <div>
@@ -9,7 +9,7 @@
                     </div>
                     <div class="ml-md-auto py-2 py-md-0">
                         <a href="index.php?r=accounts/index" class="btn btn-white btn-border btn-round mr-2">List Akun</a>
-                        <a href="index.php?r=transactions/index" class="btn btn-success btn-round">List Transaksi</a>
+                        <a href="index.php?r=transactions/index" class="<?=config('theme')['button_main_color']?> btn-round">List Transaksi</a>
                     </div>
                 </div>
             </div>
