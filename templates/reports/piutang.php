@@ -1,7 +1,7 @@
 <?php if(!isset($_GET['cetak'])): ?>
 <?php load_templates('layouts/top') ?>
     <div class="content">
-        <div class="panel-header bg-success-gradient">
+        <div class="<?=config('theme')['panel_color']?>">
             <div class="page-inner py-5">
                 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                     <div>
@@ -34,7 +34,7 @@
                                     &nbsp;
                                     <input type="date" name="to" class="form-control" value="<?=@$_GET['to']?>">
                                     &nbsp;
-                                    <button name="tampil" class="btn btn-success">Tampilkan</button>
+                                    <button name="tampil" class="<?=config('theme')['button_main_color']?>">Tampilkan</button>
                                     &nbsp;
                                     <button name="cetak" class="btn btn-primary">Cetak</button>
                                 </div>

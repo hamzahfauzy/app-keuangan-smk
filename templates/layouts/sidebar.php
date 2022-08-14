@@ -4,7 +4,7 @@
         <div class="sidebar-content">
             <div class="user">
                 <div class="text-center">
-                    <img src="http://backend.stikes-assyifa.ac.id/images/logo.png" width="150px" height="100px" alt="logo" style="object-fit:contain;">
+                    <img src="<?=config('theme')['logo']?>" width="150px" height="100px" alt="logo" style="object-fit:contain;">
                 </div>
                 <div class="info text-center mt-2">
                     <a href="">
@@ -15,7 +15,7 @@
                     <div class="clearfix"></div>
                 </div>
             </div>
-            <ul class="nav nav-success">
+            <ul class="nav <?=config('theme')['sidebar_color']?>">
                 <?= generated_menu(auth()->user->id) ?>
             </ul>
         </div>

@@ -1,7 +1,7 @@
 <?php if(!isset($_GET['cetak'])): ?>
 <?php load_templates('layouts/top') ?>
     <div class="content">
-        <div class="panel-header bg-success-gradient">
+        <div class="<?=config('theme')['panel_color']?>">
             <div class="page-inner py-5">
                 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                     <div>
@@ -14,7 +14,7 @@
                             <a href="index.php?r=transactions/index&invoice_code=<?=$_GET['invoice_code']?>&cetak" target="_blank" class="btn btn-warning btn-round">Cetak</a>
                         <?php endif ?>
                         <a href="index.php?r=transactions/import" class="btn btn-primary btn-round">Import Transaksi</a>
-                        <a href="index.php?r=transactions/create&invoice_code=<?=isset($_GET['invoice_code'])?$_GET['invoice_code']:''?>" class="btn btn-success btn-round">Buat Transaksi</a>
+                        <a href="index.php?r=transactions/create&invoice_code=<?=isset($_GET['invoice_code'])?$_GET['invoice_code']:''?>" class="<?=config('theme')['button_main_color']?> btn-round">Buat Transaksi</a>
                     </div>
                 </div>
             </div>

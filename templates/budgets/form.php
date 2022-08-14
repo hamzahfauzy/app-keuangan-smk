@@ -9,7 +9,7 @@ td input.form-control
 }
 </style>
     <div class="content">
-        <div class="panel-header bg-success-gradient">
+        <div class="<?=config('theme')['panel_color']?>">
             <div class="page-inner py-5">
                 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                     <div>
@@ -30,7 +30,7 @@ td input.form-control
                             <?php if($success_msg): ?>
                             <div class="alert alert-success"><?=$success_msg?></div>
                             <?php endif ?>
-                            <button class="btn btn-success" onclick="saveAnggaran.submit()">Simpan</button>
+                            <button class="<?=config('theme')['button_main_color']?>" onclick="saveAnggaran.submit()">Simpan</button>
                             <p></p>
                             <form action="" id="saveAnggaran" method="post">
                             <table class="table table-bordered table-hover">
@@ -50,7 +50,7 @@ td input.form-control
                                     <?= render_tree_on_row($tree, $sources, $_GET['id']) ?>
                                 </tbody>
                             </table>
-                            <button class="btn btn-success">Simpan</button>
+                            <button class="<?=config('theme')['button_main_color']?>">Simpan</button>
                             </form>
                         </div>
                     </div>

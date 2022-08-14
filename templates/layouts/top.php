@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title><?=app('name')?></title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="assets/img/main-logo.png" type="image/x-icon"/>
+	<link rel="icon" href="<?=config('theme')['logo']?>" type="image/x-icon"/>
 
 	<!-- Fonts and icons -->
 	<script src="assets/js/plugin/webfont/webfont.min.js"></script>
@@ -29,7 +29,7 @@
 	<div class="wrapper">
 		<div class="main-header">
 			<!-- Logo Header -->
-			<div class="logo-header" data-background-color="green">
+			<div class="logo-header" data-background-color="<?=config('theme')['header_color']?>">
 				
 				<a href="index.php" class="logo text-white">
 					<?=app('name')?>
@@ -49,7 +49,7 @@
 			<!-- End Logo Header -->
 
 			<!-- Navbar Header -->
-			<nav class="navbar navbar-header navbar-expand-lg" data-background-color="green2">
+			<nav class="navbar navbar-header navbar-expand-lg" data-background-color="<?=config('theme')['top_navbar_color']?>">
 				
 				<div class="container-fluid">
 					<div class="collapse" id="search-nav">

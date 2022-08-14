@@ -1,7 +1,7 @@
 <?php load_templates('layouts/top') ?>
 <?php load_templates('subjects/modal') ?>
     <div class="content">
-        <div class="panel-header bg-success-gradient">
+        <div class="<?=config('theme')['panel_color']?>">
             <div class="page-inner py-5">
                 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                     <div>
@@ -10,7 +10,7 @@
                     </div>
                     <div class="ml-md-auto py-2 py-md-0">
                         <a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-round">Import</a>
-                        <a href="index.php?r=subjects/create" class="btn btn-success btn-round">Buat Subjek</a>
+                        <a href="index.php?r=subjects/create" class="<?=config('theme')['button_main_color']?> btn-round">Buat Subjek</a>
                     </div>
                 </div>
             </div>

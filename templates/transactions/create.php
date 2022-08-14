@@ -2,7 +2,7 @@
 <?php load_templates('transactions/modal') ?>
 <?php load_templates('transactions/modaltagihan') ?>
     <div class="content">
-        <div class="panel-header bg-success-gradient">
+        <div class="<?=config('theme')['panel_color']?>">
             <div class="page-inner py-5">
                 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                     <div>
