@@ -5,9 +5,22 @@ class Whatsapp
     
     static function send($to, $message)
     {
+        $conn = conn();
+        $db   = new Database($conn);
+
+        return $db->insert('messages',[
+            'message_content' => $message,
+            'message_to' => $to,
+            'message_type' => 'whatsapp',
+            'status' => 'queued',
+        ]);
+    }
+    
+    static function sent($to, $message)
+    {
         if(empty(config('wa_api_key')) || !empty(config('wa_sender')))
         {
-            return ;
+            return false;
         }
         $data = [
             'api_key' => config('wa_api_key'),
@@ -32,6 +45,6 @@ class Whatsapp
         $response = curl_exec($curl);
         
         curl_close($curl);
-        echo $response;
+        return $response;
     }
 }

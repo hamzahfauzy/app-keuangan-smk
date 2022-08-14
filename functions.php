@@ -1,17 +1,22 @@
 <?php
 
-if(file_exists('../vendor/autoload.php'))
-{
-    require '../vendor/autoload.php';
+$parent_path = '../';
+if (!in_array(php_sapi_name(),["cli","cgi-fcgi"])) {
+    $parent_path = '';
 }
 
-require '../libs/JwtAuth.php';
-require '../libs/ArrayHelper.php';
-require '../libs/Session.php';
-require '../libs/Database.php';
-require '../libs/Whatsapp.php';
+if(file_exists($parent_path . 'vendor/autoload.php'))
+{
+    require $parent_path . 'vendor/autoload.php';
+}
 
-$config = require '../config/main.php';
+require $parent_path . 'libs/JwtAuth.php';
+require $parent_path . 'libs/ArrayHelper.php';
+require $parent_path . 'libs/Session.php';
+require $parent_path . 'libs/Database.php';
+require $parent_path . 'libs/Whatsapp.php';
+
+$config = require $parent_path . 'config/main.php';
 
 function app($key = false)
 {
