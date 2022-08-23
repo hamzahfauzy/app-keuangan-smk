@@ -29,7 +29,11 @@ class Database
         $this->table = $table;
         $this->query = "INSERT INTO $table";
         $fields = implode(',',array_keys($val));
-        $values = "'".implode("','",array_values($val))."'";
+        $vals = array_values($val);
+        $vals = array_map(function($valss){
+            return preg_replace('/[\x00-\x1F\x7F-\xFF]/', '', $valss);
+        }, $vals);
+        $values = "'".implode("','",$vals)."'";
         $this->query .= "($fields)VALUES($values)";
         return $this->exec('insert');
     }
@@ -195,6 +199,7 @@ class Database
             {
                 if($this->type == 'mysqli')
                     $value = $this->connection->real_escape_string($value);
+                $value = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '', $value);
                 if(in_array($value,$this->without_quote))
                 $string .= "$key=$value";
                 else
