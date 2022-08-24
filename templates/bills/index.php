@@ -57,8 +57,8 @@
                                             <td>
                                                 <?php if($data->amount > $data->total_bayar): ?>
                                                 <a href="index.php?r=bills/pay&id=<?=$data->id?>" class="btn btn-sm btn-success"><i class="fas fa-money-bill"></i> Bayar</a>
-                                                <a href="index.php?r=bills/delete&id=<?=$data->id?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</a>
                                                 <?php endif ?>
+                                                <a href="index.php?r=bills/delete&id=<?=$data->id?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</a>
                                                 <!-- <a href="index.php?r=bills/edit&id=<?=$data->id?>" class="btn btn-sm btn-warning"><i class="fas fa-pencil-alt"></i> Edit</a> -->
                                             </td>
                                         </tr>
